@@ -1,4 +1,4 @@
-1. Validation schemas and types for parameters and body objects
-2. Enable authentication using @fastify/jwt
-3. User entity and associate it with a todo item
+1. Validation schemas and types for parameters and body objects (done)
+2. User entity and associate it with a todo item
+3. Enable authentication using @fastify/jwt
 4. postgraphile

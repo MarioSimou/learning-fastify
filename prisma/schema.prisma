@@ -11,7 +11,21 @@ datasource db {
 }
 
 model Todo {
-  id        Int     @id @default(autoincrement())
-  title     String  @unique
-  completed Boolean @default(false)
+  id        Int      @id @default(autoincrement())
+  title     String   @unique
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  todos     Todo[]
 }
