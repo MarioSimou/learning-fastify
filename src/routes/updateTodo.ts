@@ -19,7 +19,6 @@ const bodySchema = {
 } as const
 
 export default async function (fastify: FastifyInstance) {
-    fastify.addHook('onRequest', fastify.authenticate)
     fastify.put<{
         Params: FromSchema<typeof paramsSchema>
         Body: FromSchema<typeof bodySchema>

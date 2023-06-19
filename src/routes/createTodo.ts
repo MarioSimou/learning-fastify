@@ -12,7 +12,6 @@ const bodySchema = {
 } as const
 
 export default async function (fastify: FastifyInstance) {
-    fastify.addHook('onRequest', fastify.authenticate)
     fastify.post<{
         Body: FromSchema<typeof bodySchema>
     }>('/api/v1/todos', { schema: { body: bodySchema } }, async (req, reply) => {

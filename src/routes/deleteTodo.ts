@@ -11,7 +11,6 @@ const paramsSchema = {
 } as const
 
 export default async function (fastify: FastifyInstance) {
-    fastify.addHook('onRequest', fastify.authenticate)
     fastify.delete<{
         Params: FromSchema<typeof paramsSchema>
     }>('/api/v1/todos/:id', { schema: { params: paramsSchema } }, async (req, reply) => {

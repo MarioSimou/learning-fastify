@@ -2,8 +2,8 @@ import type { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify'
 import fp from 'fastify-plugin'
 import { StatusUnauthorized, newApiResponse, toError } from '../newApiResponse.js'
 
-async function authenticatePlugin(fastify: FastifyInstance) {
-    fastify.decorate('authenticate', async (req: FastifyRequest, reply: FastifyReply) => {
+async function auth(fastify: FastifyInstance) {
+    fastify.addHook('onRequest', async (req: FastifyRequest, reply: FastifyReply) => {
         try {
             await req.jwtVerify()
         } catch (e) {
@@ -12,4 +12,4 @@ async function authenticatePlugin(fastify: FastifyInstance) {
     })
 }
 
-export default fp(authenticatePlugin)
+export default fp(auth)
